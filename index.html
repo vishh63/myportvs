@@ -625,11 +625,11 @@
                 </div>
             </div>
             <div class="profile-photo-container">
-                <div class="profile-photo">
-                    <div class="photo-placeholder">Click to upload<br>your photo</div>
-                    <div class="upload-overlay">📷 Change Photo</div>
                 </div>
-                <input type="file" class="photo-upload" accept="image/*">
+            <div class="profile-photo" style="background-image: url('profile.jpg'); background-size: cover; background-position: center;">
+    <!-- Optional overlay or placeholder -->
+</div>
+                
             </div>
         </div>
     </section>
@@ -869,7 +869,7 @@
         // Start typing animation when page loads
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(typeWriter, 500);
-
+/*
             // Handle photo upload
             const photoContainer = document.querySelector('.profile-photo');
             const photoUpload = document.querySelector('.photo-upload');
@@ -892,7 +892,7 @@
                     reader.readAsDataURL(file);
                 }
             });
-
+*/
             // Navigation and scroll animations
             const navLinks = document.querySelectorAll('.nav-links a');
             const sections = document.querySelectorAll('.section, .hero');
