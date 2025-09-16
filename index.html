@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaishali Survase - Data Analyst & BI Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5f7f;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #4ecdc4;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-content p.intro {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .typing-container {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .typing-text {
+            border-right: 2px solid white;
+            animation: blink-cursor 1s infinite;
+        }
+
+        @keyframes blink-cursor {
+            0%, 50% { border-color: white; }
+            51%, 100% { border-color: transparent; }
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .profile-photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .photo-upload {
+            display: none;
+        }
+
+        .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .profile-photo-container:hover .upload-overlay {
+            opacity: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #4ecdc4;
+            transform: translateY(-2px);
+        }
+
+        .btn.primary {
+            background: white;
+            color: #4ecdc4;
+        }
+
+        .btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c5f7f;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .about-text h3 {
+            color: #2c5f7f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .star-method {
+            margin-bottom: 2rem;
+        }
+
+        .star-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .star-item h4 {
+            color: #2c5f7f;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .star-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat h3 {
+            font-size: 2rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f8f9fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #2c5f7f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-level {
+            width: 60px;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-level::after {
+            content: '';
+            display: block;
+            height: 100%;
+            background: #4ecdc4;
+            width: var(--level);
+            transition: width 0.3s ease;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            color: #2c5f7f;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-btn {
+            padding: 0.5rem 1rem;
+            background: #4ecdc4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .project-btn:hover {
+            background: #44a08d;
+        }
+
+        /* Resume Section */
+        .resume {
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .resume-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .resume-preview {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            margin-bottom: 3rem;
+        }
+
+        .contact-intro h3 {
+            color: #2c5f7f;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-intro p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            color: #4ecdc4;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #4ecdc4;
+        }
+
+        .contact-item span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c5f7f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-photo {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide sections initially */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav>
+            <div class="logo">Vaishali Survase</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="intro">Hello, I'm</p>
+                <div class="typing-container">
+                    <h1><span id="typing-text" class="typing-text"></span></h1>
+                </div>
+                <h2>Data Analyst & BI Expert</h2>
+                <p class="hero-description">Transforming complex datasets into actionable business insights through advanced analytics, machine learning, and compelling data visualizations. Specialized in SQL, Python, Power BI, and statistical modeling to drive data-driven decision making.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary">View My Work</a>
+                    <a href="#resume" class="btn">Download Resume</a>
+                </div>
+            </div>
+            <div class="profile-photo-container">
+                <div class="profile-photo">
+                    <div class="photo-placeholder">Click to upload<br>your photo</div>
+                    <div class="upload-overlay">📷 Change Photo</div>
+                </div>
+                <input type="file" class="photo-upload" accept="image/*">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>My Journey in Data Analytics</h3>
+                <div class="star-method">
+                    <div class="star-item">
+                        <p>As a passionate data enthusiast and recent graduate, I recognized the growing demand for data-driven insights in today's business landscape. I committed to mastering data analytics and business intelligence to help organizations make informed decisions.</p>
+                    </div>
+                    
+                    <div class="star-item">
+                        <p>I set out to build comprehensive expertise in data analysis, visualization, and machine learning through hands-on projects. My goal was to develop practical skills in SQL, Python, Power BI, and statistical modeling while working on real-world business problems.</p>
+                    </div>
+                    
+                    <div class="star-item">
+                        <p>I completed over 15 diverse projects including retail sales analysis, HR attrition prediction, and innovative audio detection systems. I mastered multiple technologies, created interactive dashboards, built ML models, and developed strong data storytelling capabilities.</p>
+                    </div>
+                    
+                    <div class="star-item">
+                        <p>Successfully built a robust portfolio demonstrating expertise in end-to-end data analysis workflows. Gained proficiency in 5+ technologies and developed the ability to transform complex datasets into actionable business insights through compelling visualizations and predictive models.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <h3>15+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat">
+                    <h3>5+</h3>
+                    <p>Technologies Mastered</p>
+                </div>
+                <div class="stat">
+                    <h3>Fresher</h3>
+                    <p>Graduate Ready</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <ul class="skill-list">
+                    <li>Python <div class="skill-level" style="--level: 90%"></div></li>
+                    <li>SQL <div class="skill-level" style="--level: 95%"></div></li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Data Visualization</h3>
+                <ul class="skill-list">
+                    <li>Power BI <div class="skill-level" style="--level: 95%"></div></li>
+                    <li>Tableau <div class="skill-level" style="--level: 50%"></div></li>
+                    <li>Matplotlib/Seaborn <div class="skill-level" style="--level: 94%"></div></li>
+                    <li>Plotly <div class="skill-level" style="--level: 80%"></div></li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Machine Learning</h3>
+                <ul class="skill-list">
+                    <li>ML Algorithms (Basic–Intermediate) <div class="skill-level" style="--level: 80%"></div></li>
+                    <li>Time Series Forecasting <div class="skill-level" style="--level: 90%"></div></li>
+                    <li>Model Evaluation <div class="skill-level" style="--level: 85%"></div></li>
+                    <li>ML Workflow <div class="skill-level" style="--level: 85%"></div></li>
+
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Database & Tools</h3>
+                <ul class="skill-list">
+                    <li>MySQL/PostgreSQL <div class="skill-level" style="--level: 90%"></div></li>
+                    <li>Excel <div class="skill-level" style="--level: 95%"></div></li>
+                    <li>Git/GitHub <div class="skill-level" style="--level: 80%"></div></li>
+                    <li>Jupyter/VS Code <div class="skill-level" style="--level: 90%"></div></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1: Retail Sales Analysis -->
+            <div class="project-card">
+                <div class="project-image">RETAIL SALES</div>
+                <div class="project-content">
+                    <h3>Retail Sales Analysis</h3>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">Visualization</span>
+                    </div>
+                    <p class="project-description">
+                        Analyzed retail data using SQL and created an interactive Power BI dashboard. Displayed key sales metrics through cards and visualizations, highlighting trends, product/customer performance, and regional insights to support business decisions.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/vishh63/Retail-Sales-Returns-Analytics-using-SQL-and-Power-BI" class="project-btn">View Project GitHub</a>
+                        <a href="https://drive.google.com/file/d/1GTRDzmPhJ7Z0dutP4zjeduKddVZW7uOt/view?usp=drive_link" class="project-btn">PowerBI Dashboard</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: HR Attrition Analysis -->
+            <div class="project-card">
+                <div class="project-image">EMPLOYEE ATTRITION</div>
+                <div class="project-content">
+                    <h3>HR Attrition Analysis | Python, Power BI</h3>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Feature Engineering</span>
+                    </div>
+                    <p class="project-description">
+                        Built ML models for attrition prediction with data cleaning, EDA, and feature engineering in Python. Created interactive Power BI dashboards to analyze attrition trends by department, role, and demographics, combining predictive analytics with business storytelling.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/vishh63/HR_Analytics_Attrition_Prediction" class="project-btn">View Project GitHub</a>
+                        <a href="https://drive.google.com/file/d/1MAqEfx5MISrJf59Td9QqfPkXnVS2IzbK/view?usp=drive_link" class="project-btn">PowerBI Reports</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Human Scream Detection -->
+            <div class="project-card">
+                <div class="project-image">SCREAM DETECTION</div>
+                <div class="project-content">
+                    <h3>Human Scream Detection System</h3>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Audio Processing</span>
+                        <span class="tag">Machine Learning</span>
+                    </div>
+                    <p class="project-description">
+                        Developed an advanced audio classification system to detect human screams using machine learning techniques. Implemented feature extraction from audio signals, trained CNN models for real-time detection, and created a monitoring system for safety applications.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-btn">View Project</a>
+                        <a href="https://github.com/vishh63" class="project-btn">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section resume">
+        <h2>Resume</h2>
+        <div class="resume-content">
+            <div class="resume-preview">
+                <h3>Professional Resume</h3>
+                <p>Download my complete resume to learn more about my projects, education, and technical skills in data analytics and business intelligence.</p>
+            </div>
+            <a href="#" class="btn primary" onclick="downloadResume()">Download Resume PDF</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <h2>Contact Me</h2>
+        <div class="contact-content">
+            <div class="contact-intro">
+                <h3>Let's Connect</h3>
+                <p>I'm always interested in discussing new opportunities, collaborations, or data challenges. Feel free to reach out through any of the channels below!</p>
+            </div>
+            
+            <div class="contact-links">
+                <a href="mailto:surwasevaishali595@gmail.com" class="contact-item">
+                    <span>surwasevaishali595@gmail.com</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/vaishali-s-579a672b8/" target="_blank" class="contact-item">
+                    <span>LinkedIn Profile</span>
+                </a>
+                
+                <a href="https://github.com/vishh63" target="_blank" class="contact-item">
+                    <span>GitHub Repository</span>
+                </a>
+                
+                <a href="tel:+919881601163" class="contact-item">
+                    <span>+91 9881601163</span>
+                </a>
+                
+                <div class="contact-item">
+                    <span>Pune, Maharashtra, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Vaishali Survase. All rights reserved. | Data Analyst Enthusiast</p>
+    </footer>
+
+    <script>
+        // Typing animation - continuous loop
+        const typingText = document.getElementById('typing-text');
+        const textToType = 'Vaishali Survase';
+        let i = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            if (!isDeleting && i < textToType.length) {
+                // Typing forward
+                typingText.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150);
+            } else if (!isDeleting && i === textToType.length) {
+                // Pause before deleting
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, 2000);
+            } else if (isDeleting && i > 0) {
+                // Deleting backward
+                typingText.innerHTML = textToType.substring(0, i - 1);
+                i--;
+                setTimeout(typeWriter, 100);
+            } else if (isDeleting && i === 0) {
+                // Start typing again
+                isDeleting = false;
+                setTimeout(typeWriter, 500);
+            }
+        }
+
+        // Start typing animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(typeWriter, 500);
+
+            // Handle photo upload
+            const photoContainer = document.querySelector('.profile-photo');
+            const photoUpload = document.querySelector('.photo-upload');
+            const photoPlaceholder = document.querySelector('.photo-placeholder');
+
+            photoContainer.addEventListener('click', function() {
+                photoUpload.click();
+            });
+
+            photoUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        photoContainer.style.backgroundImage = `url(${e.target.result})`;
+                        photoContainer.style.backgroundSize = 'cover';
+                        photoContainer.style.backgroundPosition = 'center';
+                        photoPlaceholder.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Navigation and scroll animations
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section, .hero');
+
+            // Scroll animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Navigation active state
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Initial animation trigger
+            sections.forEach(section => {
+                section.classList.add('visible');
+            });
+        });
+
+        // Resume download
+        function downloadResume() {
+            alert('Resume download functionality would be implemented here. Please add your actual resume file.');
+        }
+
+        // Skill level animations on scroll
+        const skillLevels = document.querySelectorAll('.skill-level');
+        const skillObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.style.getPropertyValue('--level');
+                }
+            });
+        });
+
+        skillLevels.forEach(skill => {
+            skillObserver.observe(skill);
+        });
+    </script>
+</body>
+</html>
+                
